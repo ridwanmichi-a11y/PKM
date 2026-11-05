@@ -1,0 +1,53 @@
+-- Struktur tabel MySQL Aplikasi Keuangan SipzStore
+-- Dihasilkan dari migration Laravel. Untuk lampiran laporan / dokumentasi.
+-- Pemasangan normal cukup: php artisan migrate --seed
+
+create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `users` add unique `users_email_unique`(`email`);
+create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `sessions` add index `sessions_user_id_index`(`user_id`);
+alter table `sessions` add index `sessions_last_activity_index`(`last_activity`);
+create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` bigint not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `cache` add index `cache_expiration_index`(`expiration`);
+create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` bigint not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `cache_locks` add index `cache_locks_expiration_index`(`expiration`);
+create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` smallint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `jobs` add index `jobs_queue_index`(`queue`);
+create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` varchar(255) not null, `queue` varchar(255) not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `failed_jobs` add index `failed_jobs_connection_queue_failed_at_index`(`connection`, `queue`, `failed_at`);
+alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`);
+alter table `users` add `username` varchar(50) null after `name`;
+alter table `users` add `role` varchar(20) not null default 'admin' after `username`;
+alter table `users` add `phone` varchar(30) null after `email`;
+alter table `users` add `is_active` tinyint(1) not null default '1' after `phone`;
+alter table `users` add `last_login_at` timestamp null after `is_active`;
+alter table `users` add unique `users_username_unique`(`username`);
+create table `settings` (`key` varchar(100) not null, `value` text null, `created_at` timestamp null, `updated_at` timestamp null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+create table `customers` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(150) not null, `type` varchar(20) not null default 'perorangan', `contact_person` varchar(100) null, `phone` varchar(30) null, `email` varchar(150) null, `address` text null, `notes` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `customers` add index `customers_name_index`(`name`);
+create table `products` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(150) not null, `category` varchar(50) not null, `unit` varchar(20) not null default 'pcs', `price` bigint unsigned not null default '0', `description` varchar(255) null, `is_active` tinyint(1) not null default '1', `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+create table `orders` (`id` bigint unsigned not null auto_increment primary key, `code` varchar(30) not null, `customer_id` bigint unsigned not null, `status` varchar(20) not null default 'masuk', `order_date` date not null, `due_date` date null, `scheduled_date` date null, `queued_at` timestamp null, `total` bigint unsigned not null default '0', `paid` bigint unsigned not null default '0', `total_qty` int unsigned not null default '0', `design_file` varchar(255) null, `design_file_name` varchar(255) null, `notes` text null, `repeat_of_id` bigint unsigned null, `created_by` bigint unsigned null, `operator_id` bigint unsigned null, `started_at` timestamp null, `finished_at` timestamp null, `handed_over_at` timestamp null, `cancel_reason` varchar(255) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `orders` add constraint `orders_customer_id_foreign` foreign key (`customer_id`) references `customers` (`id`) on delete restrict;
+alter table `orders` add constraint `orders_repeat_of_id_foreign` foreign key (`repeat_of_id`) references `orders` (`id`) on delete set null;
+alter table `orders` add constraint `orders_created_by_foreign` foreign key (`created_by`) references `users` (`id`) on delete set null;
+alter table `orders` add constraint `orders_operator_id_foreign` foreign key (`operator_id`) references `users` (`id`) on delete set null;
+alter table `orders` add index `orders_status_scheduled_date_index`(`status`, `scheduled_date`);
+alter table `orders` add index `orders_order_date_index`(`order_date`);
+alter table `orders` add unique `orders_code_unique`(`code`);
+create table `order_items` (`id` bigint unsigned not null auto_increment primary key, `order_id` bigint unsigned not null, `product_id` bigint unsigned null, `name` varchar(150) not null, `category` varchar(50) not null default 'Lainnya', `spec` varchar(255) null, `qty` int unsigned not null, `price` bigint unsigned not null, `subtotal` bigint unsigned not null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `order_items` add constraint `order_items_order_id_foreign` foreign key (`order_id`) references `orders` (`id`) on delete cascade;
+alter table `order_items` add constraint `order_items_product_id_foreign` foreign key (`product_id`) references `products` (`id`) on delete set null;
+create table `cash_transactions` (`id` bigint unsigned not null auto_increment primary key, `code` varchar(30) not null, `type` varchar(5) not null, `date` date not null, `category` varchar(60) not null, `description` varchar(255) not null, `amount` bigint unsigned not null, `account` varchar(20) not null default 'tunai', `order_id` bigint unsigned null, `receipt_path` varchar(255) null, `receipt_name` varchar(255) null, `status` varchar(20) not null default 'tercatat', `created_by` bigint unsigned null, `approved_by` bigint unsigned null, `approved_at` timestamp null, `reject_reason` varchar(255) null, `voided_by` bigint unsigned null, `voided_at` timestamp null, `void_reason` varchar(255) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `cash_transactions` add constraint `cash_transactions_order_id_foreign` foreign key (`order_id`) references `orders` (`id`) on delete set null;
+alter table `cash_transactions` add constraint `cash_transactions_created_by_foreign` foreign key (`created_by`) references `users` (`id`) on delete set null;
+alter table `cash_transactions` add constraint `cash_transactions_approved_by_foreign` foreign key (`approved_by`) references `users` (`id`) on delete set null;
+alter table `cash_transactions` add constraint `cash_transactions_voided_by_foreign` foreign key (`voided_by`) references `users` (`id`) on delete set null;
+alter table `cash_transactions` add index `cash_transactions_status_date_index`(`status`, `date`);
+alter table `cash_transactions` add index `cash_transactions_type_date_index`(`type`, `date`);
+alter table `cash_transactions` add unique `cash_transactions_code_unique`(`code`);
+create table `audit_logs` (`id` bigint unsigned not null auto_increment primary key, `user_id` bigint unsigned null, `action` varchar(50) not null, `subject_type` varchar(100) null, `subject_id` bigint unsigned null, `subject_label` varchar(100) null, `description` text not null, `changes` json null, `ip_address` varchar(45) null, `created_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table `audit_logs` add constraint `audit_logs_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete set null;
+alter table `audit_logs` add index `audit_logs_subject_type_subject_id_index`(`subject_type`, `subject_id`);
+alter table `audit_logs` add index `audit_logs_created_at_index`(`created_at`);
