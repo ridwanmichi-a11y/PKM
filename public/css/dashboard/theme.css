@@ -1,0 +1,933 @@
+/* 1. TOKENS */
+.app:has(.grid-kpi) {
+    --sipz-navy: #06394D;
+    --sipz-navy-deep: #032D40;
+    --sipz-teal: #09BFC1;
+    --sipz-teal-dark: #078B99;
+    --sipz-text: #10294D;
+    --sipz-muted: #7187A5;
+    --sipz-line: #DCEAF5;
+    --sipz-bg: #EAF6FD;
+    --sipz-orange: #F5A742;
+    --sipz-radius: 20px;
+    --sipz-shadow: 0 10px 26px rgba(35, 91, 130, .09);
+}
+
+/* 2. AREA APLIKASI */
+.app:has(.grid-kpi) {
+    min-height: 100vh;
+    background: var(--sipz-bg);
+}
+
+/* 3. SIDEBAR GLOBAL */
+.app .sidebar {
+    position: sticky;
+    top: 0;
+    isolation: isolate;
+    flex: 0 0 270px;
+    width: 270px;
+    height: 100vh;
+    padding: 24px 18px 20px;
+    overflow: hidden;
+    color: #F5FCFF;
+    background: linear-gradient(
+        180deg,
+        #07536A 0%,
+        #06465B 34%,
+        #03364A 72%,
+        #022D40 100%
+    );
+    border-right: 1px solid rgba(255, 255, 255, .08);
+}
+
+/* Dekorasi gelombang sidebar */
+.app .sidebar::before,
+.app .sidebar::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: -18%;
+    width: 136%;
+    height: 150px;
+    pointer-events: none;
+    opacity: .9;
+}
+
+.app .sidebar::before {
+    top: 38px;
+    background:
+        radial-gradient(
+            ellipse at 72% 100%,
+            transparent 48%,
+            rgba(12, 207, 205, .62) 49%,
+            rgba(12, 207, 205, .16) 54%,
+            transparent 66%
+        ),
+        radial-gradient(
+            ellipse at 28% 100%,
+            transparent 54%,
+            rgba(18, 170, 188, .38) 55%,
+            rgba(18, 170, 188, .10) 61%,
+            transparent 72%
+        );
+}
+
+.app .sidebar::after {
+    bottom: 68px;
+    height: 190px;
+    background:
+        radial-gradient(
+            ellipse at 34% 0%,
+            transparent 48%,
+            rgba(10, 205, 202, .58) 49%,
+            rgba(10, 205, 202, .16) 55%,
+            transparent 68%
+        ),
+        radial-gradient(
+            ellipse at 78% 0%,
+            transparent 54%,
+            rgba(11, 160, 180, .42) 55%,
+            rgba(11, 160, 180, .12) 62%,
+            transparent 74%
+        );
+}
+
+.app .sidebar > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Brand */
+.app .sidebar .brand {
+    gap: 12px;
+    padding: 0 7px;
+    color: #fff;
+}
+
+.app .sidebar .brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    color: #fff;
+    background: linear-gradient(145deg, #19D4D0, #079BA9);
+    box-shadow: 0 7px 20px rgba(0, 201, 203, .24);
+}
+
+.app .sidebar .brand-name,
+.app .sidebar .brand-sub,
+.app .sidebar .nav a {
+    color: #F4FBFF;
+}
+
+.app .sidebar .brand-name {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -.25px;
+}
+
+.app .sidebar .brand-sub {
+    color: rgba(231, 248, 255, .75);
+    font-size: 11px;
+}
+
+/* Navigasi */
+.app .sidebar .nav {
+    gap: 4px;
+}
+
+.app .sidebar .nav-title {
+    padding: 17px 10px 8px;
+    color: rgba(202, 239, 247, .78);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+}
+
+.app .sidebar .nav a {
+    min-height: 42px;
+    padding: 10px 12px;
+    gap: 11px;
+    border-radius: 11px;
+    color: #E5F5FA;
+    font-size: 13px;
+    font-weight: 650;
+    transition: background .18s ease, color .18s ease;
+}
+
+.app .sidebar .nav a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, .10);
+}
+
+.app .sidebar .nav a.on {
+    color: #fff;
+    background: linear-gradient(105deg, #12C9C6 0%, #078F9D 100%);
+    box-shadow: 0 6px 17px rgba(0, 190, 197, .22);
+}
+
+.app .sidebar .nav a.on svg {
+    color: #fff;
+}
+
+.app .sidebar .nav .count {
+    margin-left: auto;
+    padding: 2px 7px;
+    color: #815000;
+    background: #FFE5A2;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* Profil pengguna */
+.app .sidebar .me {
+    margin-top: auto;
+    padding: 9px 10px;
+    color: #fff;
+    background: rgba(225, 248, 255, .10);
+    border: 1px solid rgba(220, 247, 255, .14);
+    border-radius: 14px;
+}
+
+.app .sidebar .me .nm {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.app .sidebar .me .rl {
+    color: rgba(232, 248, 255, .72);
+    font-size: 11px;
+}
+
+.app .sidebar .avatar {
+    color: #fff;
+    background: linear-gradient(140deg, #18D3CC, #079BA8);
+}
+
+/* 4. BACKGROUND DASHBOARD */
+.app:has(.grid-kpi) .main {
+    position: relative;
+    isolation: isolate;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 30px 40px 52px;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            ellipse at 83% 5%,
+            rgba(102, 211, 239, .30),
+            transparent 32%
+        ),
+        radial-gradient(
+            ellipse at 8% 75%,
+            rgba(146, 216, 247, .20),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #F0F9FF 0%,
+            #E7F4FC 52%,
+            #F1FAFF 100%
+        );
+}
+
+/* Gelombang background */
+.app:has(.grid-kpi) .main::before,
+.app:has(.grid-kpi) .main::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: -5%;
+    width: 110%;
+    height: 190px;
+    pointer-events: none;
+}
+
+.app:has(.grid-kpi) .main::before {
+    top: -122px;
+    background:
+        radial-gradient(
+            ellipse at 74% 100%,
+            transparent 43%,
+            rgba(91, 201, 236, .20) 44%,
+            rgba(91, 201, 236, .07) 52%,
+            transparent 65%
+        ),
+        radial-gradient(
+            ellipse at 45% 100%,
+            transparent 50%,
+            rgba(255, 255, 255, .62) 51%,
+            rgba(255, 255, 255, .10) 60%,
+            transparent 72%
+        );
+}
+
+.app:has(.grid-kpi) .main::after {
+    bottom: -132px;
+    background:
+        radial-gradient(
+            ellipse at 26% 0%,
+            transparent 43%,
+            rgba(91, 201, 236, .22) 44%,
+            rgba(91, 201, 236, .07) 53%,
+            transparent 66%
+        ),
+        radial-gradient(
+            ellipse at 72% 0%,
+            transparent 50%,
+            rgba(255, 255, 255, .68) 51%,
+            rgba(255, 255, 255, .12) 61%,
+            transparent 73%
+        );
+}
+
+.app:has(.grid-kpi) .main > .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0;
+    gap: 20px;
+}
+
+/* 5. HEADER DASHBOARD */
+.app:has(.grid-kpi) .page-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 22px;
+    margin-bottom: 2px;
+}
+
+.app:has(.grid-kpi) .eyebrow {
+    margin: 0 0 7px;
+    color: #078C9A;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .1px;
+}
+
+.app:has(.grid-kpi) .page-title {
+    margin: 0;
+    color: var(--sipz-text);
+    font-size: clamp(27px, 2.15vw, 35px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -.9px;
+}
+
+.app:has(.grid-kpi) .page-sub {
+    margin: 7px 0 0;
+    color: var(--sipz-muted);
+    font-size: 14px;
+}
+
+.app:has(.grid-kpi) .actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Filter waktu */
+.app:has(.grid-kpi) .seg {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 4px;
+    background: rgba(220, 235, 247, .78);
+    border: 1px solid rgba(220, 234, 245, .9);
+    border-radius: 13px;
+}
+
+.app:has(.grid-kpi) .seg a,
+.app:has(.grid-kpi) .seg button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0 14px;
+    color: #315477;
+    background: transparent;
+    border: 0;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.app:has(.grid-kpi) .seg a.on,
+.app:has(.grid-kpi) .seg button.on {
+    color: #078B99;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(32, 75, 110, .10);
+}
+
+/* Tombol utama */
+.app:has(.grid-kpi) .btn-primary {
+    min-height: 44px;
+    padding: 0 18px;
+    color: #fff;
+    background: linear-gradient(115deg, #12C7C4, #078D9D);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 160, 175, .18);
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: box-shadow .18s ease, filter .18s ease;
+}
+
+.app:has(.grid-kpi) .btn-primary:hover {
+    color: #fff;
+    filter: brightness(1.04);
+    box-shadow: 0 9px 20px rgba(0, 160, 175, .23);
+}
+
+/* 6. KARTU RINGKASAN */
+.app:has(.grid-kpi) .grid-kpi {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0 0 2px;
+}
+
+.app:has(.grid-kpi) .kpi {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    padding: 20px 20px 18px;
+    background: rgba(255, 255, 255, .94);
+    border: 1px solid rgba(216, 233, 246, .95);
+    border-radius: var(--sipz-radius);
+    box-shadow: var(--sipz-shadow);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.app:has(.grid-kpi) .kpi::after {
+    content: "";
+    position: absolute;
+    right: -28px;
+    bottom: -48px;
+    width: 142px;
+    height: 96px;
+    border-radius: 50%;
+    background: radial-gradient(
+        ellipse,
+        rgba(20, 201, 199, .22),
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+.app:has(.grid-kpi) .kpi:nth-child(2)::after {
+    background: radial-gradient(
+        ellipse,
+        rgba(255, 139, 112, .21),
+        transparent 70%
+    );
+}
+
+.app:has(.grid-kpi) .kpi:nth-child(3)::after {
+    background: radial-gradient(
+        ellipse,
+        rgba(52, 205, 139, .21),
+        transparent 70%
+    );
+}
+
+.app:has(.grid-kpi) .kpi:nth-child(4)::after {
+    background: radial-gradient(
+        ellipse,
+        rgba(255, 190, 76, .23),
+        transparent 70%
+    );
+}
+
+.app:has(.grid-kpi) .kpi:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 13px 28px rgba(38, 87, 125, .12);
+}
+
+.app:has(.grid-kpi) .kpi .k {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: #637D9C;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.app:has(.grid-kpi) .kpi .v {
+    position: relative;
+    z-index: 1;
+    margin-top: 12px;
+    color: var(--sipz-text);
+    font-size: clamp(22px, 1.75vw, 29px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -.55px;
+    white-space: nowrap;
+}
+
+.app:has(.grid-kpi) .kpi .d {
+    position: relative;
+    z-index: 1;
+    margin-top: 7px;
+    color: #8296AF;
+    font-size: 11px;
+}
+
+/* Badge */
+.app:has(.grid-kpi) .chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+    padding: 3px 9px;
+    border: 0;
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.app:has(.grid-kpi) .chip-good {
+    color: #07845F;
+    background: #DDF6EC;
+}
+
+.app:has(.grid-kpi) .chip-bad {
+    color: #D34B45;
+    background: #FDE8E5;
+}
+
+.app:has(.grid-kpi) .chip-muted {
+    color: #657B94;
+    background: #EDF3F8;
+}
+
+.app:has(.grid-kpi) .chip-warn {
+    color: #A65C08;
+    background: #FFF0D8;
+}
+
+.app:has(.grid-kpi) .chip-dark {
+    color: #fff;
+    background: linear-gradient(120deg, #10B8B6, #078A9A);
+}
+
+/* 7. LAYOUT GRAFIK DAN ANTREAN */
+.app:has(.grid-kpi) .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.9fr) minmax(330px, .9fr);
+    align-items: start;
+    gap: 20px;
+    margin: 0;
+}
+
+.app:has(.grid-kpi) .col-main,
+.app:has(.grid-kpi) .col-side {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
+}
+
+/* 8. KARTU */
+.app:has(.grid-kpi) .card {
+    min-width: 0;
+    padding: 21px 22px;
+    background: rgba(255, 255, 255, .94);
+    border: 1px solid rgba(216, 233, 246, .95);
+    border-radius: var(--sipz-radius);
+    box-shadow: var(--sipz-shadow);
+}
+
+.app:has(.grid-kpi) .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.app:has(.grid-kpi) .card-title {
+    margin: 0;
+    color: var(--sipz-text);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -.25px;
+}
+
+.app:has(.grid-kpi) .card-title.sm {
+    font-size: 14px;
+}
+
+.app:has(.grid-kpi) .small,
+.app:has(.grid-kpi) .muted {
+    color: var(--sipz-muted);
+}
+
+.app:has(.grid-kpi) .card-link {
+    color: #078D9B;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.app:has(.grid-kpi) .card-link:hover {
+    color: #056A7B;
+}
+
+/* 9. GRAFIK */
+.app:has(.grid-kpi) .card.chart {
+    padding: 22px 23px 18px;
+}
+
+.app:has(.grid-kpi) .legend {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.app:has(.grid-kpi) .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #526C8C;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.app:has(.grid-kpi) .legend i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.app:has(.grid-kpi) .chart svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 260px;
+    margin-top: 12px;
+    overflow: visible;
+}
+
+.app:has(.grid-kpi) .chart svg line {
+    stroke: #E4EDF6;
+    stroke-width: 1;
+}
+
+.app:has(.grid-kpi) .chart svg rect {
+    filter: drop-shadow(0 2px 3px rgba(7, 127, 140, .10));
+}
+
+/* 10. PANEL KAPASITAS DAN ANTREAN */
+.app:has(.grid-kpi) .col-side .num {
+    color: var(--sipz-text);
+}
+
+.app:has(.grid-kpi) .bar {
+    height: 10px;
+    overflow: hidden;
+    background: #E1EDF7;
+    border-radius: 30px;
+}
+
+.app:has(.grid-kpi) .bar > div {
+    height: 100%;
+    background: linear-gradient(90deg, #19D0C8, #078D9D);
+    border-radius: inherit;
+    transition: width .35s ease;
+}
+
+.app:has(.grid-kpi) .bar.warn > div {
+    background: linear-gradient(90deg, #FFC45A, #F09B24);
+}
+
+/* Daftar antrean */
+.app:has(.grid-kpi) .qlist {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0;
+    list-style: none;
+}
+
+.app:has(.grid-kpi) .qlist li {
+    min-width: 0;
+    border-radius: 13px;
+    transition: background .18s ease;
+}
+
+.app:has(.grid-kpi) .qlist li:hover,
+.app:has(.grid-kpi) .qlist li.run {
+    background: #E8F7FA;
+}
+
+.app:has(.grid-kpi) .qlist li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    padding: 9px 8px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.app:has(.grid-kpi) .qlist .qno {
+    display: inline-flex;
+    flex: 0 0 29px;
+    align-items: center;
+    justify-content: center;
+    width: 29px;
+    height: 29px;
+    color: #315477;
+    background: #EDF4FA;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.app:has(.grid-kpi) .qlist li.run .qno {
+    color: #fff;
+    background: linear-gradient(135deg, #13C7C4, #078D9D);
+}
+
+.app:has(.grid-kpi) .qlist .t {
+    display: block;
+    overflow: hidden;
+    color: #10294D;
+    font-size: 12px;
+    font-weight: 800;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.app:has(.grid-kpi) .qlist .m {
+    display: block;
+    margin-top: 3px;
+    color: #8296AF;
+    font-size: 10px;
+}
+
+/* 11. TABEL DAN KOMPONEN LAIN DASHBOARD */
+.app:has(.grid-kpi) .approve-card {
+    margin-top: 10px;
+    padding: 14px;
+    background: #F8FBFE;
+    border: 1px solid #E2EDF6;
+    border-radius: 14px;
+}
+
+.app:has(.grid-kpi) .approve-card .strong {
+    color: #17365E;
+}
+
+.app:has(.grid-kpi) .text-out {
+    color: #D65B51 !important;
+}
+
+.app:has(.grid-kpi) .text-in {
+    color: #078A68 !important;
+}
+
+.app:has(.grid-kpi) .flash {
+    border-radius: 13px;
+}
+
+.app:has(.grid-kpi) .card.flush {
+    padding: 0;
+    overflow: hidden;
+}
+
+.app:has(.grid-kpi) .table-wrap {
+    overflow-x: auto;
+}
+
+.app:has(.grid-kpi) .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.app:has(.grid-kpi) .table thead th {
+    padding: 13px 14px;
+    color: #7187A5;
+    background: #F5F9FD;
+    border-top: 1px solid #EAF0F6;
+    border-bottom: 1px solid #E4EDF6;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .45px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.app:has(.grid-kpi) .table tbody td {
+    padding: 13px 14px;
+    color: #315477;
+    border-bottom: 1px solid #EDF2F7;
+    font-size: 11px;
+    vertical-align: middle;
+}
+
+.app:has(.grid-kpi) .table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.app:has(.grid-kpi) .table tbody tr:hover {
+    background: #F7FBFE;
+}
+
+.app:has(.grid-kpi) .table .t {
+    color: #17365E;
+    font-weight: 800;
+}
+
+.app:has(.grid-kpi) .table .sub {
+    margin-top: 3px;
+    color: #8296AF;
+    font-size: 10px;
+}
+
+/* 12. RESPONSIVE */
+@media (max-width: 1250px) {
+    .app .sidebar {
+        flex-basis: 245px;
+        width: 245px;
+    }
+
+    .app:has(.grid-kpi) .main {
+        padding-right: 26px;
+        padding-left: 26px;
+    }
+
+    .app:has(.grid-kpi) .grid-kpi {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .app:has(.grid-kpi) .split {
+        grid-template-columns: minmax(0, 1.55fr) minmax(285px, .9fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .app .sidebar {
+        flex-basis: 220px;
+        width: 220px;
+        padding-right: 13px;
+        padding-left: 13px;
+    }
+
+    .app:has(.grid-kpi) .main {
+        padding: 24px 20px 38px;
+    }
+
+    .app:has(.grid-kpi) .page-head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .app:has(.grid-kpi) .actions {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .app:has(.grid-kpi) .split {
+        grid-template-columns: 1fr;
+    }
+
+    .app:has(.grid-kpi) .chart svg {
+        min-height: 220px;
+    }
+}
+
+@media (max-width: 640px) {
+    .app:has(.grid-kpi) {
+        display: block;
+    }
+
+    .app .sidebar {
+        display: none;
+    }
+
+    .app:has(.grid-kpi) .main {
+        padding: 18px 14px 30px;
+    }
+
+    .app:has(.grid-kpi) .main > .container {
+        gap: 16px;
+    }
+
+    .app:has(.grid-kpi) .page-title {
+        font-size: 26px;
+    }
+
+    .app:has(.grid-kpi) .grid-kpi {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .app:has(.grid-kpi) .kpi {
+        padding: 18px;
+        border-radius: 17px;
+    }
+
+    .app:has(.grid-kpi) .card {
+        padding: 17px;
+        border-radius: 17px;
+    }
+
+    .app:has(.grid-kpi) .card.chart {
+        padding: 17px 13px 13px;
+    }
+
+    .app:has(.grid-kpi) .card-head {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .app:has(.grid-kpi) .actions {
+        gap: 8px;
+    }
+
+    .app:has(.grid-kpi) .seg {
+        flex: 1;
+    }
+
+    .app:has(.grid-kpi) .seg a,
+    .app:has(.grid-kpi) .seg button {
+        flex: 1;
+        padding: 0 8px;
+    }
+
+    .app:has(.grid-kpi) .actions > .btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .app:has(.grid-kpi) .chart svg {
+        min-height: 180px;
+    }
+}
+
+/* 13. AKSESIBILITAS */
+@media (prefers-reduced-motion: reduce) {
+    .app:has(.grid-kpi) *,
+    .app:has(.grid-kpi) *::before,
+    .app:has(.grid-kpi) *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}

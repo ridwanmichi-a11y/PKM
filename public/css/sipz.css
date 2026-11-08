@@ -380,3 +380,270 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .table th.right, .table td.right { text-align: right; }
 .link-btn { border: 0; background: none; padding: 4px 0; font-size: 12px; font-weight: 700; color: var(--muted); text-decoration: underline; cursor: pointer; }
 .link-btn:hover { color: var(--red-ink); }
+
+/* ---------- SIPZSTORE - PREMIUM ORDER BOARD ---------- */
+
+:root {
+    --order-primary: #08aeb8;
+    --order-dark: #073b50;
+    --order-navy: #142b50;
+    --order-bg: #edf6ff;
+    --order-muted: #7186a5;
+}
+
+/* ---------- Background halaman ---------- */
+
+body {
+    background: linear-gradient(135deg, #eaf5ff 0%, #f4f9ff 55%, #e6f5fc 100%);
+}
+
+/* ---------- Area jadwal mesin ---------- */
+
+.card.tight {
+    background: rgba(255, 255, 255, .92);
+    border: 1px solid #dceaf7;
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: 0 10px 28px rgba(29, 76, 119, .09);
+    margin-bottom: 26px;
+}
+
+.card.tight .card-title {
+    color: var(--order-navy);
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.card.tight .bar {
+    height: 13px;
+    border-radius: 20px;
+    background: #dcebf7;
+    overflow: hidden;
+}
+
+.card.tight .bar > div {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #08aeb8, #36d0c5);
+    transition: width .3s ease;
+}
+
+/* ---------- Board layout ---------- */
+
+.board-wrap {
+    margin-top: 28px;
+    overflow-x: auto;
+    padding-bottom: 14px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(210px, 1fr));
+    gap: 14px;
+    align-items: stretch;
+    min-width: 1120px;
+}
+
+/* ---------- Kolom antrean ---------- */
+
+.lane {
+    padding: 12px;
+    border-radius: 22px;
+    min-width: 0;
+    background: #e3efff;
+    border: 1px solid rgba(255, 255, 255, .8);
+    transition: background .2s ease;
+}
+
+.lane:nth-child(2) {
+    background: #fff5e7;
+}
+
+.lane:nth-child(3) {
+    background: #e2f5fb;
+}
+
+.lane:nth-child(4) {
+    background: #e5f7f1;
+}
+
+.lane:nth-child(5) {
+    background: #eeefff;
+}
+
+/* ---------- Header kolom ---------- */
+
+.lane-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 3px 14px;
+    color: #122c4d;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.lane-head > span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.lane-head i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, .75);
+}
+
+.lane-head .chip {
+    min-width: 29px;
+    height: 29px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 3px 9px rgba(30, 60, 100, .08);
+    font-weight: 800;
+}
+
+/* ---------- Card pesanan ---------- */
+
+.ocard {
+    background: rgba(255, 255, 255, .97);
+    border: 1px solid #dce9f5;
+    border-radius: 17px;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 5px 14px rgba(30, 74, 115, .07);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.ocard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 23px rgba(30, 74, 115, .12);
+}
+
+.ocard.run {
+    border: 2px solid #08b4bd;
+    box-shadow: 0 6px 20px rgba(8, 174, 184, .13);
+}
+
+/* ---------- Nomor pesanan ---------- */
+
+.ocard .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 12px;
+}
+
+.ocard .code {
+    color: #214b79;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+/* ---------- Nama produk ---------- */
+
+.ocard h3 {
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 800;
+    color: #122a4b;
+    margin: 0 0 5px;
+}
+
+.ocard h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.ocard .cust {
+    font-size: 13px;
+    color: #607b9c;
+    margin-bottom: 13px;
+}
+
+/* ---------- Informasi pesanan ---------- */
+
+.ocard .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding-top: 11px;
+    border-top: 1px solid #eaf0f7;
+    font-size: 11px;
+    color: #7186a5;
+}
+
+.ocard .meta .num {
+    color: #21466d;
+    font-weight: 800;
+}
+
+/* ---------- Tombol aksi ---------- */
+
+.ocard .btn {
+    width: 100%;
+    min-height: 39px;
+    margin-top: 13px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 800;
+    transition: all .2s ease;
+}
+
+.ocard .btn:not(.btn-success) {
+    background: linear-gradient(135deg, #ffffff, #effaff);
+    color: #078b9d;
+    border: 1px solid #61cbd7;
+}
+
+.ocard .btn:not(.btn-success):hover {
+    background: linear-gradient(135deg, #08b8c1, #078b9d);
+    color: white;
+}
+
+.ocard .btn-success {
+    background: linear-gradient(135deg, #08b8b9, #078b9d);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(8, 174, 184, .2);
+}
+
+/* ---------- Kolom kosong ---------- */
+
+.lane-empty {
+    text-align: center;
+    padding: 25px 10px;
+    color: #91a4bd;
+    font-size: 13px;
+}
+
+/* ---------- Riwayat ---------- */
+
+.lane > .btn-ghost {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
+    color: #087e9b;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+    .board {
+        min-width: 1100px;
+    }
+
+    .card.tight {
+        padding: 17px;
+    }
+}

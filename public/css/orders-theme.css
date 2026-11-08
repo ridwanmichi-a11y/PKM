@@ -1,0 +1,610 @@
+
+   .orders-screen {
+    --order-navy: #073B50;
+    --order-navy-dark: #032D40;
+    --order-teal: #00B9C2;
+    --order-teal-dark: #078C9C;
+    --order-green: #0D9B78;
+    --order-bg: #EAF5FC;
+    --order-text: #10294D;
+    --order-muted: #7187A5;
+    --order-border: #DCEAF5;
+
+    background: var(--order-bg);
+    color: var(--order-text);
+}
+
+/* ===== BACKGROUND ===== */
+
+.orders-screen .main {
+    background:
+        radial-gradient(ellipse at 85% 0%,
+            rgba(112, 218, 235, .20), transparent 35%),
+        linear-gradient(135deg, #EFF8FF 0%, #EAF5FC 55%, #F4FAFF 100%);
+}
+
+.orders-screen .container {
+    max-width: 1450px;
+}
+
+/* ===== SIDEBAR ===== */
+
+.orders-screen .sidebar {
+    background:
+        radial-gradient(ellipse at 30% 85%,
+            rgba(0, 194, 197, .24), transparent 40%),
+        linear-gradient(180deg,
+            #06465B 0%,
+            #06394E 48%,
+            #032F43 100%);
+    border-right: 1px solid rgba(255,255,255,.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.orders-screen .sidebar::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    left: -25%;
+    bottom: 100px;
+    width: 150%;
+    height: 150px;
+    opacity: .8;
+    background:
+        radial-gradient(ellipse at 50% 100%,
+            transparent 45%,
+            rgba(0, 197, 203, .35) 46%,
+            rgba(0, 197, 203, .10) 55%,
+            transparent 70%);
+}
+
+.orders-screen .sidebar .brand,
+.orders-screen .sidebar .nav,
+.orders-screen .sidebar .me {
+    position: relative;
+    z-index: 1;
+}
+
+.orders-screen .sidebar .brand-mark {
+    background: linear-gradient(135deg, #18D4D1, #009CA9);
+    color: white;
+    box-shadow: 0 5px 18px rgba(0, 190, 195, .25);
+    border-radius: 13px;
+}
+
+.orders-screen .sidebar .nav a {
+    border-radius: 12px;
+    transition: .2s ease;
+}
+
+.orders-screen .sidebar .nav a:hover {
+    background: rgba(255,255,255,.10);
+}
+
+.orders-screen .sidebar .nav a.on {
+    background: linear-gradient(110deg, #12C5C4, #009CA9);
+    color: white;
+    box-shadow: 0 5px 18px rgba(0, 184, 194, .22);
+}
+
+.orders-screen .sidebar .nav a.on svg {
+    color: white;
+}
+
+.orders-screen .sidebar .count {
+    background: #FFE8A6;
+    color: #805300;
+    border-radius: 50px;
+}
+
+.orders-screen .sidebar .me {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 15px;
+}
+
+.orders-screen .sidebar .avatar {
+    background: linear-gradient(135deg, #17D4CC, #00A5AE);
+    color: white;
+}
+
+/* ===== PAGE HEADING ===== */
+
+.orders-screen .page-title,
+.orders-screen h1 {
+    color: #10294D;
+    font-weight: 800;
+    letter-spacing: -.7px;
+}
+
+.orders-screen .page-desc {
+    color: #7187A5;
+}
+
+.orders-screen .small,
+.orders-screen .muted {
+    color: #7B8EAA;
+}
+
+/* ===== GENERAL BUTTON ===== */
+
+.orders-screen .btn-primary,
+.orders-screen .btn:not(.btn-ghost) {
+    border-radius: 12px;
+    font-weight: 700;
+    transition: all .22s ease;
+}
+
+.orders-screen .btn-primary,
+.orders-screen .btn-success {
+    background: linear-gradient(120deg, #13C7C4, #008FA1);
+    border: 1px solid transparent;
+    color: #fff;
+    box-shadow: 0 5px 13px rgba(0, 160, 175, .16);
+}
+
+.orders-screen .btn-primary:hover,
+.orders-screen .btn-success:hover {
+    background: linear-gradient(120deg, #00AAA9, #057C91);
+    transform: translateY(-1px);
+}
+
+/* ===== SCHEDULE CARD ===== */
+
+.orders-screen .card.tight {
+    background: rgba(255,255,255,.94);
+    border: 1px solid #DCEAF5;
+    border-radius: 20px;
+    padding: 23px 25px;
+    box-shadow: 0 9px 25px rgba(35, 83, 120, .07);
+    margin-bottom: 28px;
+}
+
+.orders-screen .card-head {
+    margin-bottom: 20px;
+}
+
+.orders-screen .card-title {
+    color: #10294D;
+    font-weight: 800;
+}
+
+.orders-screen .bar {
+    height: 10px;
+    overflow: hidden;
+    background: #DCECF7;
+    border-radius: 20px;
+}
+
+.orders-screen .bar > div {
+    background: linear-gradient(90deg, #16D0C8, #008FA2);
+    border-radius: 20px;
+    transition: width .4s ease;
+}
+
+.orders-screen .bar.good > div {
+    background: linear-gradient(90deg, #20C997, #07976E);
+}
+
+.orders-screen .bar.warn > div {
+    background: linear-gradient(90deg, #FFC45A, #F09B24);
+}
+
+/* ===== KANBAN BOARD ===== */
+
+.orders-screen .board-wrap {
+    overflow-x: auto;
+    padding: 2px 0 18px;
+}
+
+.orders-screen .board {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    align-items: stretch;
+    min-width: 100%;
+}
+
+/* ===== KANBAN LANES ===== */
+
+.orders-screen .lane {
+    min-width: 0;
+    padding: 11px;
+    border-radius: 20px;
+    border: 1px solid rgba(214, 231, 244, .8);
+    background: linear-gradient(180deg,
+        rgba(220, 237, 251, .82),
+        rgba(232, 243, 251, .92));
+    min-height: 420px;
+}
+
+.orders-screen .lane:nth-child(1) {
+    background: linear-gradient(180deg, #E2F0FC, #DCEBFA);
+}
+
+.orders-screen .lane:nth-child(2) {
+    background: linear-gradient(180deg, #F9F2E8, #F0F3F8);
+}
+
+.orders-screen .lane:nth-child(3) {
+    background: linear-gradient(180deg, #DFF4FA, #E8F5FC);
+}
+
+.orders-screen .lane:nth-child(4) {
+    background: linear-gradient(180deg, #E3F6F2, #E9F6F8);
+}
+
+.orders-screen .lane:nth-child(5) {
+    background: linear-gradient(180deg, #EAEFFD, #E7F0FC);
+}
+
+/* ===== LANE HEADER ===== */
+
+.orders-screen .lane-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    min-height: 43px;
+    padding: 0 3px 9px;
+    color: #10294D;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.orders-screen .lane-head > span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.orders-screen .lane-head i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(255,255,255,.7);
+}
+
+.orders-screen .lane-head .chip {
+    background: white !important;
+    color: #17365E !important;
+    border-radius: 50px;
+    min-width: 31px;
+    text-align: center;
+    padding: 6px 9px;
+    font-weight: 800;
+    box-shadow: 0 3px 9px rgba(30, 65, 100, .08);
+}
+
+/* ===== ORDER CARDS ===== */
+
+.orders-screen .ocard {
+    background: linear-gradient(145deg, #FFFFFF, #FCFEFF);
+    border: 1px solid #DCE9F4;
+    border-radius: 16px;
+    padding: 13px;
+    margin-bottom: 11px;
+    box-shadow: 0 5px 13px rgba(37, 83, 119, .07);
+    transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.orders-screen .ocard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(37, 83, 119, .12);
+}
+
+.orders-screen .ocard.run {
+    border: 1.5px solid #00B8C2;
+    box-shadow: 0 5px 17px rgba(0, 184, 194, .12);
+}
+
+.orders-screen .ocard .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.orders-screen .ocard .code {
+    color: #234B77;
+    font-weight: 800;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.orders-screen .ocard h3 {
+    color: #10294D;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin: 0 0 5px;
+}
+
+.orders-screen .ocard h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.orders-screen .ocard h3 a:hover {
+    color: #009EAA;
+}
+
+.orders-screen .ocard .cust {
+    color: #7187A5;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.orders-screen .ocard .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 10px;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #EAF0F6;
+    color: #8296AF;
+    font-size: 10px;
+}
+
+.orders-screen .ocard .meta .num {
+    color: #234B77;
+    font-weight: 800;
+}
+
+/* ===== ORDER ACTION BUTTONS ===== */
+
+.orders-screen .ocard .btn {
+    width: 100%;
+    margin-top: 12px;
+    min-height: 39px;
+    border-radius: 11px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.orders-screen .ocard .btn:not(.btn-success) {
+    color: #008FA2;
+    background: linear-gradient(135deg, #FFFFFF, #F3FBFF);
+    border: 1px solid #75D5E0;
+}
+
+.orders-screen .ocard .btn:not(.btn-success):hover {
+    background: #E4FAFA;
+    border-color: #00B8C2;
+}
+
+.orders-screen .ocard .btn-success {
+    background: linear-gradient(120deg, #13C9BE, #008F9D);
+    color: white;
+}
+
+/* ===== EMPTY STATE ===== */
+
+.orders-screen .lane-empty {
+    padding: 28px 10px;
+    text-align: center;
+    color: #8AA0B8;
+    font-size: 12px;
+    border: 1px dashed #C8D9E9;
+    border-radius: 12px;
+    background: rgba(255,255,255,.4);
+}
+
+/* ===== HISTORY LINK ===== */
+
+.orders-screen .lane > a.btn-ghost {
+    display: block;
+    text-align: center;
+    color: #008FA2;
+    font-weight: 800;
+    margin-top: 12px;
+    text-decoration: none;
+}
+
+.orders-screen .lane > a.btn-ghost:hover {
+    color: #006D83;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1200px) {
+    .orders-screen .board {
+        grid-template-columns: repeat(5, minmax(205px, 1fr));
+        min-width: 1080px;
+    }
+}
+
+@media (max-width: 768px) {
+    .orders-screen .card.tight {
+        padding: 17px;
+        border-radius: 16px;
+    }
+
+    .orders-screen .board {
+        grid-template-columns: repeat(5, minmax(220px, 1fr));
+    }
+
+    .orders-screen .lane {
+        min-height: 350px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .orders-screen * {
+        transition: none !important;
+    }
+}
+
+/* MAIN BACKGROUND WAVE */
+.orders-screen .main {
+    position: relative;
+    isolation: isolate;
+    background:
+        radial-gradient(
+            ellipse at 82% -5%,
+            rgba(91, 218, 240, .25),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 5% 45%,
+            rgba(182, 226, 250, .16),
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #EFF8FF 0%,
+            #E7F4FC 55%,
+            #F5FAFF 100%
+        );
+}
+
+/* Abstract flowing wave on main content */
+.orders-screen .main::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    top: -115px;
+    right: -100px;
+    width: 850px;
+    height: 360px;
+
+    background:
+        radial-gradient(
+            ellipse 75% 65% at 70% 0%,
+            transparent 57%,
+            rgba(103, 220, 239, .19) 58%,
+            rgba(103, 220, 239, .10) 65%,
+            transparent 66%
+        ),
+        radial-gradient(
+            ellipse 65% 55% at 95% 0%,
+            transparent 55%,
+            rgba(38, 191, 220, .15) 56%,
+            rgba(38, 191, 220, .07) 64%,
+            transparent 65%
+        );
+
+    opacity: .9;
+}
+
+/* Keep content above decoration */
+.orders-screen .main > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================
+   SIDEBAR WAVE DECORATION
+========================================= */
+
+.orders-screen .sidebar {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #03485B 0%,
+            #033E53 48%,
+            #032D42 100%
+        );
+}
+
+/* Upper turquoise wave */
+.orders-screen .sidebar::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+
+    top: 65px;
+    left: -65px;
+    width: 350px;
+    height: 110px;
+
+    border-bottom: 3px solid rgba(30, 218, 222, .48);
+    border-radius: 50%;
+    transform: rotate(-9deg);
+
+    box-shadow:
+        0 13px 0 -10px rgba(30, 218, 222, .35),
+        0 25px 0 -21px rgba(30, 218, 222, .22);
+
+    background:
+        radial-gradient(
+            ellipse at 60% 100%,
+            rgba(0, 190, 195, .16),
+            transparent 70%
+        );
+}
+
+/* Lower turquoise wave */
+.orders-screen .sidebar::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+
+    left: -75px;
+    bottom: 95px;
+    width: 370px;
+    height: 155px;
+
+    border-top: 3px solid rgba(26, 210, 216, .35);
+    border-radius: 50%;
+    transform: rotate(-12deg);
+
+    box-shadow:
+        0 -13px 0 -10px rgba(26, 210, 216, .25),
+        0 -27px 0 -22px rgba(26, 210, 216, .16);
+
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(0, 190, 195, .18),
+            transparent 72%
+        );
+}
+
+/* Sidebar content remains above waves */
+.orders-screen .sidebar .brand,
+.orders-screen .sidebar .nav,
+.orders-screen .sidebar .me {
+    position: relative;
+    z-index: 2;
+}
+
+/* Active menu glow */
+.orders-screen .sidebar .nav a.on {
+    background: linear-gradient(
+        110deg,
+        #12C9C6,
+        #009CA9
+    );
+
+    box-shadow:
+        0 5px 18px rgba(0, 184, 194, .28),
+        inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+/* Brand glow */
+.orders-screen .sidebar .brand-mark {
+    box-shadow:
+        0 5px 20px rgba(0, 207, 210, .30),
+        0 0 25px rgba(0, 207, 210, .12);
+}
+
+/* Smooth background transition */
+.orders-screen .ocard,
+.orders-screen .lane,
+.orders-screen .card.tight {
+    transition:
+        background .25s ease,
+        box-shadow .25s ease,
+        transform .25s ease;
+}

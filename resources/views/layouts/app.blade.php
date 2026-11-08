@@ -8,7 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/sipz.css') }}?v=1">
+    <link rel="stylesheet" href="{{ asset('css/sipz.css') }}?v=2">
+    <link rel="stylesheet" href="{{ asset('css/dashboard/theme.css') }}?v=2">
+    @if (request()->routeIs('orders.index'))
+    <link rel="stylesheet" href="{{ asset('css/orders-theme.css') }}?v=2">
+@endif
 </head>
 <body>
 @php

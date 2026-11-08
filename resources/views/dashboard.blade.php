@@ -82,9 +82,9 @@
                         $hi = $m['income'] / $nice * $H;
                         $he = $m['expense'] / $nice * $H;
                     @endphp
-                    <rect x="{{ $x }}" y="{{ $base - $hi }}" width="30" height="{{ max(0, $hi) }}" rx="4" fill="#1B2A5E"><title>{{ $m['full'] }} · pendapatan {{ Fmt::rp($m['income']) }}</title></rect>
-                    <rect x="{{ $x + 34 }}" y="{{ $base - $he }}" width="30" height="{{ max(0, $he) }}" rx="4" fill="#F0B429"><title>{{ $m['full'] }} · pengeluaran {{ Fmt::rp($m['expense']) }}</title></rect>
-                    <text x="{{ $x + 32 }}" y="{{ $base - $hi - 6 }}" font-size="11" font-weight="700" fill="#1B2A5E" text-anchor="middle" font-family="Manrope, sans-serif">{{ Fmt::juta($m['income']) }}</text>
+                    <rect x="{{ $x }}" y="{{ $base - $hi }}" width="30" height="{{ max(0, $hi) }}" rx="4" fill="#087F8C"><title>{{ $m['full'] }} · pendapatan {{ Fmt::rp($m['income']) }}</title></rect>
+                    <rect x="{{ $x + 34 }}" y="{{ $base - $he }}" width="30" height="{{ max(0, $he) }}" rx="4" fill="#F5A742"><title>{{ $m['full'] }} · pengeluaran {{ Fmt::rp($m['expense']) }}</title></rect>
+                    <text x="{{ $x + 32 }}" y="{{ $base - $hi - 6 }}" font-size="11" font-weight="700" fill="#087F8C" text-anchor="middle" font-family="Manrope, sans-serif">{{ Fmt::juta($m['income']) }}</text>
                     <text x="{{ $x + 32 }}" y="202" font-size="12" font-weight="600" fill="#3D4559" text-anchor="middle" font-family="Manrope, sans-serif">{{ $m['label'] }}{{ $m['partial'] ? '*' : '' }}</text>
                 @endforeach
             </svg>
