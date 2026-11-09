@@ -27,8 +27,12 @@
     flex: 0 0 270px;
     width: 270px;
     height: 100vh;
+    box-sizing: border-box;
     padding: 24px 18px 20px;
-    overflow: hidden;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
     color: #F5FCFF;
     background: linear-gradient(
         180deg,
@@ -206,7 +210,7 @@
 }
 
 /* 4. BACKGROUND DASHBOARD */
-.app:has(.grid-kpi) .main {
+.app .main {
     position: relative;
     isolation: isolate;
     flex: 1 1 auto;
@@ -233,8 +237,8 @@
 }
 
 /* Gelombang background */
-.app:has(.grid-kpi) .main::before,
-.app:has(.grid-kpi) .main::after {
+.app .main::before,
+.app .main::after {
     content: "";
     position: absolute;
     z-index: 0;
